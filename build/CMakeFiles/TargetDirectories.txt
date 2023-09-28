@@ -1,0 +1,6 @@
+C:/сема/1курс/основы проги/lab bitset/mp2-lab1-set/build/CMakeFiles/ALL_BUILD.dir
+C:/сема/1курс/основы проги/lab bitset/mp2-lab1-set/build/CMakeFiles/ZERO_CHECK.dir
+C:/сема/1курс/основы проги/lab bitset/mp2-lab1-set/build/src/CMakeFiles/set.dir
+C:/сема/1курс/основы проги/lab bitset/mp2-lab1-set/build/samples/CMakeFiles/sample_prime_numbers.dir
+C:/сема/1курс/основы проги/lab bitset/mp2-lab1-set/build/gtest/CMakeFiles/gtest.dir
+C:/сема/1курс/основы проги/lab bitset/mp2-lab1-set/build/test/CMakeFiles/test_set.dir

@@ -31,12 +31,13 @@ TSet::TSet(const TBitField &bf) : BitField(bf)
 
 TSet::operator TBitField()
 {
-    return FAKE_BITFIELD;
+    TBitField tmp(BitField);
+    return tmp;
 }
 
 int TSet::GetMaxPower(void) const // получить макс. к-во эл-тов
 {
-    return FAKE_INT;
+    return MaxPower;
 }
 
 int TSet::IsMember(const int Elem) const // элемент множества?
@@ -62,52 +63,80 @@ void TSet::DelElem(const int Elem) // исключение элемента мн
 
 TSet& TSet::operator=(const TSet &s) // присваивание
 {
-    return FAKE_SET;
+    BitField = s.BitField;
+    MaxPower = s.MaxPower;
+    return *this;
 }
 
 int TSet::operator==(const TSet &s) const // сравнение
 {
-    return FAKE_INT;
+    return BitField == s.BitField;
 }
 
 int TSet::operator!=(const TSet &s) const // сравнение
 {
-    return FAKE_INT;
+    return BitField != s.BitField;
 }
 
 TSet TSet::operator+(const TSet &s) // объединение
 {
-    return FAKE_SET;
+    TSet tmp(BitField | s.BitField);
+    return tmp;
 }
 
 TSet TSet::operator+(const int Elem) // объединение с элементом
 {
-    return FAKE_SET;
+    TSet tmp(*this);
+    tmp.InsElem(Elem);
+    return tmp;
 }
 
 TSet TSet::operator-(const int Elem) // разность с элементом
 {
-    return FAKE_SET;
+    TSet tmp(*this);
+    tmp.DelElem(Elem);
+    return tmp;
 }
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
-    return FAKE_SET;
+    TSet tmp(BitField & s.BitField);
+    return tmp;
 }
 
 TSet TSet::operator~(void) // дополнение
 {
-    return FAKE_SET;
+    TSet tmp(~BitField);
+    return tmp;
 }
 
 // перегрузка ввода/вывода
 
 istream &operator>>(istream &istr, TSet &s) // ввод
 {
+    int Elem;
+    for (int i = 0; i < s.MaxPower; i++)
+    {
+        istr >> Elem;
+        if (Elem > 0 && Elem < s.MaxPower)
+        {
+            s.InsElem(Elem);
+        }
+    }
     return istr;
 }
 
 ostream& operator<<(ostream &ostr, const TSet &s) // вывод
 {
+    ostr << endl << "{";
+    for (int i = 0; i < s.MaxPower; i++)
+    {
+
+        if (s.IsMember(i))
+        {
+            ostr << i << ", ";
+        }
+    }
+    ostr << "}" << endl;
     return ostr;
 }
